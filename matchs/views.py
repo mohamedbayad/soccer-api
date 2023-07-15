@@ -25,6 +25,13 @@ class MatchDay(APIView):
 
         data : dict
         data = response.json()
-        data.pop("__typename")
+        try:
+            if data["status"] == 500:
+                data = {
+                    "error" : status.HTTP_500_INTERNAL_SERVER_ERROR,
+                    "message" : "The path should look like this /language/date"
+                }
+        except:
+            data.pop("__typename")
         return Response(data)
 

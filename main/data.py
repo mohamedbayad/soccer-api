@@ -14,7 +14,7 @@ class FootBall:
 
 
     finishData = {} # This dictionary contains all data
-    def getData(self):
+    def getData(self, date):
 
         respons = requests.get(self.url, headers=self.header)
 
@@ -74,6 +74,7 @@ class FootBall:
             id_table = id_table[:10]
             self.finishData.update({title : {
                 "id" : int(id_table),
+                "__date" : date,
                 "title" : title,
                 "header" : dataHeader,
                 "body" : dataBodyList
